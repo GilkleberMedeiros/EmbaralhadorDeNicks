@@ -16,6 +16,7 @@ int main(int argc, char * argv[])
         return 1;
     }
 
+    // Inicializando randomizador
     srand(time(NULL));
 
     if (argc == 2) 
@@ -37,10 +38,18 @@ int main(int argc, char * argv[])
 
 char * embaralha_string(char * str)
 {
+    /*
+    Função para embalharar uma string;
+    Recebe:
+        char * str: Ponteiro da string;
+    Devolve:
+        char * str: Ponteiro da string embaralhada in-place;
+    */
     int tamanho_string = strlen(str);
     int numeros_sorteados[tamanho_string];
     int proximo_index = 0;
 
+    // Sorteia os indíces da string para para coloca-lós em uma nova posição
     while (proximo_index < tamanho_string) 
     {
         int num = (rand() % tamanho_string);
@@ -52,11 +61,14 @@ char * embaralha_string(char * str)
         }
     }
 
+    // Cria uma copia de refência para o embalharamento
     char * str_copy = malloc(sizeof(char) * (strlen(str) + 1));
     strcpy(str_copy, str);
 
+    // Embaralha os caracteres de acordo com os números sorteados
     for (int i = 0; i < tamanho_string; i++) 
     {
+        // Exem: str[0] = str_copy[numeros_sorteados[0] == 5]
         str[i] = str_copy[numeros_sorteados[i]];
     }
 
@@ -66,6 +78,9 @@ char * embaralha_string(char * str)
 
 int notin(int num, int num_array[], int tamanho_array) 
 {
+    /*
+    not in do python
+    */
     for (int i = 0; i < tamanho_array; i++) 
     {
         if (num_array[i] == num) 
